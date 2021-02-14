@@ -1,0 +1,39 @@
+{
+    "name": "micro-frontends-scripts",
+    "version": "1.0.0",
+    "title": "Micro Frontends Scripts",
+    "description": "vue 微前端脚手架",
+    "keywords": [
+        "vue",
+        "scripts",
+        "component",
+        "typescript",
+        "micro frontends"
+    ],
+    "main": "bin/index.js",
+    "bin": {
+        "micro-frontends-scripts": "./bin/index.js"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "micro-frontends-scripts": "node bin/index.js",
+        "view": "node generator/createView.js --view",
+        "comp": "node generator/createView.js --component",
+        "module": "node generator/createModule.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/lin15263550843/micro-frontends-vue-scripts.git"
+    },
+    "author": "lhd",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/lin15263550843/micro-frontends-vue-scripts/issues"
+    },
+    "homepage": "https://github.com/lin15263550843/micro-frontends-vue-scripts#readme",
+    "dependencies": {
+        "chalk": "^4.1.0",
+        "commander": "^7.0.0",
+        "silly-datetime": "^0.1.2"
+    }
+}
