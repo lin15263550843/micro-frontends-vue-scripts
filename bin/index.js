@@ -3,14 +3,13 @@ const { spawn } = require('child_process');
 const { version } = require('../package.json');
 const { program } = require('commander');
 const createApp = require('../generator/createApplication');
-const logger = require('../commons/logger');
 /**
  * 创建应用
  */
 program
     .command('create <name>')
     // .option('-p, --portal', '是否创建主应用')
-    .description('create appliction')
+    .description('创建微应用')
     .action((name, option) => {
         createApp(name, option);
     });
@@ -19,7 +18,7 @@ program
  */
 program
     .command('module <dirName>')
-    .description('create module')
+    .description('创建模块')
     .action(dirName => {
         spawn('node', ['generator/createModule.js', dirName], { stdio: 'inherit' });
         // execFile('node', ['generator/createModule.js', dirName], (error, stdout, stderr) => {
@@ -35,7 +34,7 @@ program
  */
 program
     .command('view <dirName>')
-    .description('create view')
+    .description('创建视图页面')
     .action(dirName => {
         spawn('node', ['generator/createView.js', '--view', dirName], { stdio: 'inherit' });
     });
@@ -44,7 +43,7 @@ program
  */
 program
     .command('comp <dirName>')
-    .description('create component')
+    .description('创建组件')
     .action(dirName => {
         spawn('node', ['generator/createView.js', '--component', dirName], { stdio: 'inherit' });
     });

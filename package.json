@@ -2,7 +2,7 @@
     "name": "micro-frontends-scripts",
     "version": "1.0.0",
     "title": "Micro Frontends Scripts",
-    "description": "vue 微前端脚手架",
+    "description": "微前端脚手架",
     "keywords": [
         "vue",
         "scripts",
@@ -23,14 +23,14 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/lin15263550843/micro-frontends-vue-scripts.git"
+        "url": "git+https://github.com/lin15263550843/micro-frontends-scripts.git"
     },
     "author": "lhd",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/lin15263550843/micro-frontends-vue-scripts/issues"
+        "url": "https://github.com/lin15263550843/micro-frontends-scripts/issues"
     },
-    "homepage": "https://github.com/lin15263550843/micro-frontends-vue-scripts#readme",
+    "homepage": "https://github.com/lin15263550843/micro-frontends-scripts#readme",
     "dependencies": {
         "chalk": "^4.1.0",
         "commander": "^7.0.0",
