@@ -1,6 +1,6 @@
 {
     "name": "micro-frontends-scripts",
-    "version": "1.0.0",
+    "version": "1.0.2",
     "title": "Micro Frontends Scripts",
     "description": "微前端脚手架",
     "keywords": [
@@ -12,7 +12,7 @@
     ],
     "main": "bin/index.js",
     "bin": {
-        "micro-frontends-scripts": "./bin/index.js"
+        "mfs": "./bin/index.js"
     },
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
