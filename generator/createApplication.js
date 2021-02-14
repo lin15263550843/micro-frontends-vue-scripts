@@ -18,6 +18,9 @@ module.exports = function createApp(name, option) {
     // })
 
     source.on('close', code => {
-        if (0 === code) logger.sucLog(`${name} 创建成功`);
+        if (0 === code) {
+            logger.sucLog(`${name} 创建成功`);
+            spawn('rm', ['-rf', '.git']);
+        }
     });
 };
