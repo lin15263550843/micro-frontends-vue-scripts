@@ -1,2 +1,3 @@
-# micro-frontends-vue-scripts
-微前端，vue，qiankun，typescript，example 脚手架
+# micro-frontends-scripts
+
+微前端脚手架
