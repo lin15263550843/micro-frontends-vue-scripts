@@ -3,6 +3,8 @@ const { spawn } = require('child_process');
 const { version } = require('../package.json');
 const { program } = require('commander');
 const createApp = require('../generator/createApplication');
+const createModule = require('../generator/createModule');
+const createView = require('../generator/createView');
 /**
  * 创建应用
  */
@@ -20,7 +22,8 @@ program
     .command('module <dirName>')
     .description('创建模块')
     .action(dirName => {
-        spawn('node', ['generator/createModule.js', dirName], { stdio: 'inherit' });
+        createModule(dirName);
+        // spawn('node', ['../generator/createModule.js', dirName], { stdio: 'inherit' });
         // execFile('node', ['generator/createModule.js', dirName], (error, stdout, stderr) => {
         //     if (error) {
         //         throw error;
@@ -30,22 +33,14 @@ program
         // });
     });
 /**
- * 创建 view
+ * 创建 view / component
  */
 program
     .command('view <dirName>')
-    .description('创建视图页面')
-    .action(dirName => {
-        spawn('node', ['generator/createView.js', '--view', dirName], { stdio: 'inherit' });
-    });
-/**
- * 创建 component
- */
-program
-    .command('comp <dirName>')
-    .description('创建组件')
-    .action(dirName => {
-        spawn('node', ['generator/createView.js', '--component', dirName], { stdio: 'inherit' });
+    .option('-c, --component', '是否创建组件')
+    .description('创建视图页面(添加 -c 参数创建组件)')
+    .action((dirName, option) => {
+        createView(option.component, dirName);
     });
 
 program.version(version, '-v, --version', '查看版本号').parse(process.argv);

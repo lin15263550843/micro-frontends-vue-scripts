@@ -1,6 +1,6 @@
 {
     "name": "micro-frontends-scripts",
-    "version": "1.0.2",
+    "version": "1.0.4",
     "title": "Micro Frontends Scripts",
     "description": "微前端脚手架",
     "keywords": [
@@ -18,9 +18,9 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "micro-frontends-scripts": "node bin/index.js",
-        "view": "node generator/createView.js --view",
-        "comp": "node generator/createView.js --component",
-        "module": "node generator/createModule.js"
+        "module": "micro-frontends-scripts module",
+        "view": "micro-frontends-scripts view",
+        "comp": "micro-frontends-scripts -c view"
     },
     "repository": {
         "type": "git",
