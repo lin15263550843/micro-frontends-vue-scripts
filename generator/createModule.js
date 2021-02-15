@@ -19,7 +19,7 @@ module.exports = function createModule(argv2 = '') {
      * @param {string} data 读取的文件数据
      */
     function handleRootRoutesData(data) {
-        const importPath = `import ${fileName} from '@/views/${modulesName}/${fileName}'\n`;
+        const importPath = `import ${fileName} from '@/views/${modulesName}/${fileName}';\n`;
         return importPath + data.replace(commonMark, `${fileName},\n            ${commonMark}`);
     }
     /**
