@@ -7,7 +7,9 @@ const { exampleAppGitPath } = require('../commons/path');
 const logger = require('../commons/logger');
 
 module.exports = function createApp(name, option) {
-    const source = spawn('git', ['clone', exampleAppGitPath, name], { stdio: 'inherit' });
+    const argvs = ['clone', exampleAppGitPath, name];
+    if (option.main) argvs.splice(1, 0, '-b', 'main-app');
+    const source = spawn('git', argvs, { stdio: 'inherit' });
 
     // source.stdout.on('data', data => {
     //     console.log(`stdout: ${data}`)

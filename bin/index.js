@@ -10,8 +10,8 @@ const createView = require('../generator/createView');
  */
 program
     .command('create <name>')
-    // .option('-p, --portal', '是否创建主应用')
-    .description('创建微应用')
+    .option('-m, --main', '是否创建主应用')
+    .description('创建微应用(添加 -m 参数创建主应用)')
     .action((name, option) => {
         createApp(name, option);
     });
