@@ -1,12 +1,14 @@
 {
     "name": "micro-frontends-scripts",
-    "version": "1.0.8",
+    "version": "1.0.9",
     "title": "Micro Frontends Scripts",
     "description": "微前端脚手架",
     "keywords": [
         "vue",
+        "micro",
         "scripts",
         "component",
+        "frontends",
         "typescript",
         "micro frontends"
     ],
