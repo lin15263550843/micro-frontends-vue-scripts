@@ -5,7 +5,7 @@
 module.exports = function createView(isComponent, argv3 = '') {
     const path = require('path');
     const fs = require('fs');
-    const { getTemplateCreateInfo, createDirectory } = require('../commons/util');
+    const { getTemplateCreateInfo, createDirectory, getModulesName, toInitialsUpperCase } = require('../commons/util');
     const { viewsDir, languagesDir, commonsLanguagesPath, importViewsPath } = require('../commons/path');
     const { viewFiles, languages, languagesTemplate, commonMark } = require('../commons/const');
     const logger = require('../commons/logger');
@@ -20,9 +20,14 @@ module.exports = function createView(isComponent, argv3 = '') {
      * @param {string} data 读取的文件数据
      */
     function handleCommonsLanguages(data, fName) {
+        const modulesName = getModulesName(modulesDir);
         const fn = fName.split('.')[0];
-        const importPath = `import ${fileName} from '${importViewsPath}${argv3}${languagesDir}/${fn}';\n`;
-        return importPath + data.replace(commonMark, `${fileName},\n    ${commonMark}`);
+        const importPath = `import ${modulesName}${toInitialsUpperCase(
+            fileName,
+        )} from '${importViewsPath}${argv3}${languagesDir}/${fn}';\n`;
+        return (
+            importPath + data.replace(commonMark, `${modulesName}${toInitialsUpperCase(fileName)},\n    ${commonMark}`)
+        );
     }
     /**
      * 添加到引用到 commons/languages
@@ -68,12 +73,12 @@ module.exports = function createView(isComponent, argv3 = '') {
      */
     function handleRoutesData(data, modulesName) {
         const addData = `{
-                path: '${fileName}',
-                name: '${fileName}',
-                component: () => import(/* webpackChunkName: "${modulesName}" */ '@/views/${modulesName}/${fileName}'),
-                meta: { title: '${fileName}' },
-            },
-            ${commonMark}`;
+            path: '${fileName}',
+            name: '${fileName}',
+            component: () => import(/* webpackChunkName: "${modulesName}" */ '@/views/${modulesName}/${fileName}'),
+            meta: { title: '${fileName}' },
+        },
+        ${commonMark}`;
         return data.replace(commonMark, addData);
     }
     /**

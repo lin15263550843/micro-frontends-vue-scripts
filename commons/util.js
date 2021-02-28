@@ -1,18 +1,18 @@
-const fs = require('fs')
+const fs = require('fs');
 // const path = require('path')
-const sd = require('silly-datetime')
-const { execSync } = require('child_process')
+const sd = require('silly-datetime');
+const { execSync } = require('child_process');
 /**
  * 创建目录
  * @param {string} dirName 目录名称
  */
 function createDirectory(dirName) {
     if (fs.existsSync(dirName)) {
-        return true
+        return true;
     } else {
         // if (createDirectory(path.dirname(dirName))) {
-        fs.mkdirSync(dirName, { recursive: true })
-        return true
+        fs.mkdirSync(dirName, { recursive: true });
+        return true;
         // }
     }
 }
@@ -22,7 +22,7 @@ function createDirectory(dirName) {
  * @param {string} name 要转换的名称
  */
 function convertToLittleHump(name) {
-    return name.replace(/^./, l => l.toUpperCase()).replace(/-([a-z])/g, (all, i) => i.toUpperCase())
+    return name.replace(/^./, l => l.toUpperCase()).replace(/-([a-z])/g, (all, i) => i.toUpperCase());
 }
 /**
  * 转换为首字母大写
@@ -31,10 +31,10 @@ function convertToLittleHump(name) {
  */
 function toInitialsUpperCase(name) {
     if (typeof name === 'string' && /^[a-zA-Z]/.test(name)) {
-        const first = name.charAt(0)
-        return name.replace(first, first.toUpperCase())
+        const first = name.charAt(0);
+        return name.replace(first, first.toUpperCase());
     } else {
-        throw new Error('请传入正确的字符串')
+        throw new Error('请传入正确的字符串');
     }
 }
 /**
@@ -48,7 +48,16 @@ function getTemplateCreateInfo(name) {
         fileName: name, // 文件名称
         initialsUpperCaseName: toInitialsUpperCase(name), // 首字母大写的名称
         dataTime: sd.format(new Date(), 'YYYY-MM-DD HH:mm:ss'),
-    }
+    };
+}
+/**
+ * 获取模块名
+ * @param {string} modulesDir 模块目录
+ */
+function getModulesName(modulesDir) {
+    const mds = modulesDir.split('/');
+    const mdsIndex = mds.length - 2;
+    return mds[mdsIndex];
 }
 
-module.exports = { convertToLittleHump, toInitialsUpperCase, getTemplateCreateInfo, createDirectory }
+module.exports = { convertToLittleHump, toInitialsUpperCase, getTemplateCreateInfo, createDirectory, getModulesName };
