@@ -6,7 +6,7 @@ module.exports = function dtoTemplate() {
  * 此处写对应的注释
  */
 export interface TestDto {
-    name: string
+    name: string;
 }
 `;
 };

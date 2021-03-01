@@ -5,7 +5,7 @@
 module.exports = function createView(isComponent, argv3 = '') {
     const path = require('path');
     const fs = require('fs');
-    const { getTemplateCreateInfo, createDirectory, getModulesName, toInitialsUpperCase } = require('../commons/util');
+    const { getTemplateCreateInfo, createDirectory, getModulesName } = require('../commons/util');
     const { viewsDir, languagesDir, commonsLanguagesPath, importViewsPath } = require('../commons/path');
     const { viewFiles, languages, languagesTemplate, commonMark } = require('../commons/const');
     const logger = require('../commons/logger');
@@ -22,11 +22,10 @@ module.exports = function createView(isComponent, argv3 = '') {
     function handleCommonsLanguages(data, fName) {
         const modulesName = getModulesName(modulesDir);
         const fn = fName.split('.')[0];
-        const importPath = `import ${modulesName}${toInitialsUpperCase(
-            fileName,
-        )} from '${importViewsPath}${argv3}${languagesDir}/${fn}';\n`;
+        const importPath = `import ${modulesName}${createTemplateInfo.initialsUpperCaseName} from '${importViewsPath}${argv3}${languagesDir}/${fn}';\n`;
         return (
-            importPath + data.replace(commonMark, `${modulesName}${toInitialsUpperCase(fileName)},\n    ${commonMark}`)
+            importPath +
+            data.replace(commonMark, `${modulesName}${createTemplateInfo.initialsUpperCaseName},\n    ${commonMark}`)
         );
     }
     /**

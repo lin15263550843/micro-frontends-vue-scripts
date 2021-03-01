@@ -7,6 +7,9 @@ module.exports = function indexTemplate(params) {
  */
 import ${params.initialsUpperCaseName} from './${params.fileName}.vue';
 
+export { default as ${params.initialsUpperCaseName}Module } from './${params.fileName}.stoer';
+export { default as ${params.initialsUpperCaseName}Const } from './${params.fileName}.const';
+export * from './${params.fileName}.dto';
 export default ${params.initialsUpperCaseName};
 `;
 };
