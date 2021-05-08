@@ -7,7 +7,7 @@ const resolve = dir => path.join(process.cwd(), dir);
 module.exports = {
     viewsDir: `src/views/`,
     srcPath: resolve('src'),
-    languagesDir: '/languages',
+    languagesDir: '/commons/languages',
     importViewsPath: '@/views/',
     rootRoutesPath: 'src/router/rootRoutes.ts',
     commonsLanguagesPath: 'src/commons/languages',

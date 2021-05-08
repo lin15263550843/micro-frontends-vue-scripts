@@ -5,67 +5,15 @@
 module.exports = function createView(isComponent, argv3 = '') {
     const path = require('path');
     const fs = require('fs');
-    const { getTemplateCreateInfo, createDirectory, getModulesName } = require('../commons/util');
-    const { viewsDir, languagesDir, commonsLanguagesPath, importViewsPath } = require('../commons/path');
-    const { viewFiles, languages, languagesTemplate, commonMark } = require('../commons/const');
+    const { getTemplateCreateInfo, createDirectory } = require('../commons/util');
+    const { viewsDir } = require('../commons/path');
+    const { viewFiles, commonMark } = require('../commons/const');
     const logger = require('../commons/logger');
     const modulesDir = viewsDir + argv3; // 模块目录
     // const modulesName = path.parse(argv3).dir // 模块
     const fileName = path.parse(argv3).name; // 文件名称
     // 创建模板需要的信息
     const createTemplateInfo = getTemplateCreateInfo(fileName);
-
-    /**
-     * 处理 commons/languages 中的数据
-     * @param {string} data 读取的文件数据
-     */
-    function handleCommonsLanguages(data, fName) {
-        const modulesName = getModulesName(modulesDir);
-        const fn = fName.split('.')[0];
-        const importPath = `import ${modulesName}${createTemplateInfo.initialsUpperCaseName} from '${importViewsPath}${argv3}${languagesDir}/${fn}';\n`;
-        return (
-            importPath +
-            data.replace(commonMark, `${modulesName}${createTemplateInfo.initialsUpperCaseName},\n    ${commonMark}`)
-        );
-    }
-    /**
-     * 添加到引用到 commons/languages
-     * @param {string} modulesDir
-     */
-    function updateCommonsLanguages() {
-        languages.forEach(fileName => {
-            const clp = `${commonsLanguagesPath}/${fileName}`;
-            fs.readFile(clp, { flag: 'r+', encoding: 'utf8' }, (err, data) => {
-                if (err) {
-                    logger.errLog(err);
-                    return;
-                }
-                fs.writeFile(clp, handleCommonsLanguages(data, fileName), { flag: 'r+', encoding: 'utf8' }, err => {
-                    if (err) {
-                        logger.errLog(err);
-                    } else {
-                        logger.sucLog('写入成功');
-                    }
-                });
-            });
-        });
-    }
-    /**
-     *  创建 languages
-     * @param {path} modulesDir
-     */
-    function createLanguagesDir() {
-        const languagesPath = `${modulesDir}${languagesDir}`;
-        fs.mkdirSync(languagesPath, { recursive: true });
-        languages.forEach(fileName => {
-            const file = `${languagesPath}/${fileName}`;
-            fs.writeFile(file, languagesTemplate, { encoding: 'utf8', flag: 'wx' }, err => {
-                if (err) throw err;
-                logger.sucLog(`成功创建 >>> ${file}`);
-            });
-        });
-        updateCommonsLanguages();
-    }
     /**
      * 处理 moduleRoutes.ts 数据
      * @param {string} data 读取的文件数据
@@ -123,7 +71,6 @@ module.exports = function createView(isComponent, argv3 = '') {
                     });
                 });
                 if (!isComponent) {
-                    createLanguagesDir();
                     updateRoutes();
                 }
             }
